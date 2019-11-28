@@ -10,13 +10,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Login to registrty
-      run: docker login docker.pkg.github.com --username $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA --tag xtraterrestrial/test:$GITHUB_SHA
-    - name: Push Docker image to registrty
-      run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA
     - name: Login to DockerHub
       run: mkdir $HOME/.docker && echo ${{ secrets.regcred }} > $_/docker.config
+    - name: Login to GitHub registrty
+      run: docker login docker.pkg.github.com --username $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
     - name: Push Docker image to DockerHub
       run: docker push xtraterrestrial/test
+    - name: Push Docker image to registrty
+      run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA
