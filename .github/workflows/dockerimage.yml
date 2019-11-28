@@ -12,11 +12,11 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA --tag xtraterrestrial/test:$GITHUB_SHA
+      run: docker build . -f Dockerfile -t docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA -t xtraterrestrial/test:$GITHUB_SHA
     - name: Login to DockerHub
-      run: docker --username $GITHUB_ACTOR -p ${{ secrets.DOCKERHUB_TOKEN }}
+      run: docker login -u $GITHUB_ACTOR -p ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Login to GitHub registrty
-      run: docker login docker.pkg.github.com --username $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
+      run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
     - name: Push Docker image to DockerHub
       run: docker push xtraterrestrial/test
     - name: Push Docker image to registrty
