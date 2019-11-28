@@ -10,9 +10,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+#     - name: Build the Docker image
+#       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Login
       run: mkdir $HOME/.docker/ && echo regcred > $_/.config.json
     - name: Test login file exist
-      run: ls $HOME #cat $HOME/.docker/config.json
+      run: ls -la $HOME #cat $HOME/.docker/config.json
