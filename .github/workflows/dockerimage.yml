@@ -13,6 +13,6 @@ jobs:
     - name: Login to registrty
       run: docker login docker.pkg.github.com --username $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY:$GITHUB_SHA
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA
     - name: Push Docker image to registrty
       run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY:$GITHUB_SHA
