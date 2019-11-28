@@ -14,7 +14,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA --tag xtraterrestrial/test:$GITHUB_SHA
     - name: Login to DockerHub
-      run: mkdir $HOME/.docker && echo ${{ secrets.regcred }} > $_/docker.config
+      run: docker --username $GITHUB_ACTOR -p ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Login to GitHub registrty
       run: docker login docker.pkg.github.com --username $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
     - name: Push Docker image to DockerHub
