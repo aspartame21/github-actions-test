@@ -17,6 +17,6 @@ jobs:
     - name: Push Docker image to registrty
       run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/a:$GITHUB_SHA
     - name: Login to DockerHub
-      run: docker login --username xtraterrestreal -p ${{ secret.DOCKER_HUB_PASSWORD }}
+      run: docker login --username xtraterrestreal -p ${{ secrets.DOCKER_HUB_PASSWORD }}
     - name: Push Docker image to DockerHub
       run: docker push xtraterrestrial/test
