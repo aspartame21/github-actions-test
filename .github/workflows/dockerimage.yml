@@ -4,15 +4,15 @@ on: [push]
 
 jobs:
 
-  build:
+  build_and_push:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-#     - name: Build the Docker image
-#       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: Login
-      run: mkdir $HOME/.docker/ && echo regcred > $_/config.json
-    - name: Test login file exist
-      run: cat $HOME/.docker/config.json
+    - name: Login to registrty
+      run: docker login docker.pkg.github.com --username $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker.pkg.github.com/$GITHUB_REPOSITORY:$GITHUB_SHA
+    - name: Push Docker image to registrty
+      run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY
