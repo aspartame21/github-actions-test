@@ -15,4 +15,4 @@ jobs:
     - name: Login
       run: mkdir $HOME/.docker/ && echo regcred > $_/.config.json
     - name: Test login file exist
-      run: ls -la $HOME #cat $HOME/.docker/config.json
+      run: ls -la $HOME/.docker #cat $HOME/.docker/config.json
