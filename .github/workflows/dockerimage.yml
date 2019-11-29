@@ -13,8 +13,8 @@ jobs:
 
     - name: Build the Docker image
       run: |
-           docker build . \ 
-           -f Dockerfile -t \ 
+           docker build .
+           -f Dockerfile -t 
            docker.pkg.github.com/$GITHUB_REPOSITORY/${{ secrets.DOCKER_IMAGE_NAME }}:$GITHUB_SHA -t ${{ secrets.DOCKERHUB_USER }}/${{ secrets.DOCKER_IMAGE_NAME }}:$GITHUB_SHA
       
     - name: Login to GitHub registrty
